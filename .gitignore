@@ -1,0 +1,63 @@
+# .gitignore pour projet Python
+# Ignorer les environnements virtuels
+venv/
+ENV/
+env/
+.venv/
+
+# Fichiers d'environnement locaux
+.env
+.env.*
+
+# Fichiers compilés Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Packages et distributions
+build/
+dist/
+*.egg-info/
+.eggs/
+*.egg
+pip-wheel-metadata/
+
+# Outils de test et caches
+.pytest_cache/
+.mypy_cache/
+.tox/
+.nox/
+.coverage
+coverage.xml
+htmlcov/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDEs
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Systèmes d'exploitation
+.DS_Store
+Thumbs.db
+
+# Logs et bases de données locales
+*.log
+*.sqlite3
+*.db
+
+# Données volumineuses ou temporaires
+# Décommentez les lignes ci-dessous si vous souhaitez ignorer entièrement le dossier data/
+# data/
+# data/*.csv
+# data/*.json
+# data/*.parquet
+
+# Fichiers temporaires divers
+*.swp
+*~
+
+# Ajoutez ici d'autres fichiers ou dossiers à ignorer selon vos besoins
