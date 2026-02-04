@@ -54,7 +54,12 @@ If you refuse too many times, the app assumes you don’t really want to watch a
 
 ### 📘 Documentation
 
-- Références et datasets
+- `file list` : 
+  - https://stackoverflow.com/questions/3207219/how-do-i-list-all-files-of-a-directory
+  - https://builtin.com/data-science/python-list-files-in-directory
+  - https://www.geeksforgeeks.org/python/python-list-files-in-a-directory/
+  - https://docs.kanaries.net/fr/topics/Python/python-get-all-files-in-directory
+- `Random` : https://docs.python.org/3/library/random.html
 - Bibliothèques utiles
 
 ### 🤖 AI usage
