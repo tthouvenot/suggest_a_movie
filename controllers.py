@@ -1,16 +1,32 @@
 import os
+import pathlib
 import random
 import time
 import models
 import views
 
 
+def validate_directory(directory: pathlib.Path):
+    """
+    Validate the directory path
+    Raises:
+        FileNotFoundError: If the directory does not exist
+        NotADirectoryError: If the path is not a directory
+        PermissionError: If the directory is not readable
+    """
+    if not directory.exists():
+        raise FileNotFoundError(f"Specified directory '{directory}' does not exist")
+    if not directory.is_dir():
+        raise NotADirectoryError(f"Specified path '{directory}' is not a directory")
+    if not os.access(directory, os.R_OK):
+        raise PermissionError(f"Specified directory '{directory}' is not readable")
+
+
 # ==============================
 # Movies importation function
 # ==============================
 
-def import_movie_list():
-
+def import_movie_list(directory: pathlib.Path):
     """
     Import and return the list of movies from the directory
 
@@ -19,7 +35,6 @@ def import_movie_list():
     """
 
     files = []
-    directory = r"\\arcadia\Multimedia\Films"
     import_dir = os.listdir(directory)
 
     for file in import_dir:
@@ -32,7 +47,6 @@ def import_movie_list():
 # ==============================
 
 def get_movie(list):
-
     """
     Get a random movie from the list
 
@@ -52,8 +66,7 @@ def get_movie(list):
 # Silent mode function
 # ==============================
 
-def run_silent_mode(list):
-
+def run_silent_mode(movies_list: list):
     """
     Run the silent mode of the movie suggester
 
@@ -62,16 +75,17 @@ def run_silent_mode(list):
     After 5 passes, the user is banned.
 
     Returns:
-        str: "accepted" if user accepts a movie, "banned" if too many passes
+        UserChoice.ACCEPT if user accepts a movie,
+        UserChoice.PASS if too many passes,
+        Status.ERROR if user types wrong value
     """
 
     nb_proposal = 1
-    state = None
+    state: models.UserChoice | models.Status | None = None
 
     views.display_message(views.sm_presentation)
     while state is None:
-
-        my_movie = get_movie(list)
+        my_movie = get_movie(movies_list)
         views.display_message(views.sm_suggestion.
                               format(movie_name=my_movie.name()))
         answer = views.sm_answer()
