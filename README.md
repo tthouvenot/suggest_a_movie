@@ -10,30 +10,34 @@ If you keep rejecting suggestions… the app will eventually get annoyed and tel
 ## ✨ Features (v0.1 - MVP)
 
 ### Core Functionality
-- 🎲 **Random Movie Selection** from your local directory
+- 🎲 **Random Movie Selection** from a user-specified directory.
+- 🚀 **Command-Line Interface:**
+  - Specify movie directory with `--directory`.
+  - Force silent mode with `--silent`.
+  - Check version with `--version`.
 - 🎭 **Two Modes:**
-  - **Silent Mode:** Clean, straightforward suggestions
-  - **Normal Mode:** Sarcastic bot with theatrical personality
-- ⚠️ **Refusal Counter:** Up to 5 rejections before getting banned
+  - **Silent Mode:** Clean, straightforward suggestions.
+  - **Normal Mode:** Sarcastic bot with a theatrical personality.
+- ⚠️ **Refusal Counter:** Up to 5 rejections before the bot gives up.
 - 📊 **Three Choices:**
-  - Accept the suggestion
-  - Pass (counts as rejection)
-  - Mark as "Already Watched" (doesn't count as rejection)
-  - Any wrong input will be rejected
+  - **Accept:** You've found a movie!
+  - **Pass:** Rejects the suggestion (counts towards the limit).
+  - **Watched:** Marks the movie as watched (doesn't count as a rejection).
+  - Any wrong input will also count as a rejection.
 
 ### Bot Personality (Normal Mode)
-- Theatrical introduction with typewriter effects
-- Escalating sarcastic responses (4 levels of disappointment)
-- Dramatic movie reveal sequence (Oscar parody)
-- Existential crisis after 5 rejections
-- Easter eggs and dark humor
+- Theatrical introduction with typewriter effects.
+- Escalating sarcastic responses (4 levels of disappointment).
+- Dramatic movie reveal sequence (Oscar parody).
+- Existential crisis after 5 rejections.
+- Easter eggs and dark humor.
 
 ### Technical Features
-- ✅ Clean MVC architecture (Model-View-Controller)
-- ✅ Comprehensive error handling (file access, invalid input)
-- ✅ Enum-based state management
-- ✅ Refactored code with low cognitive complexity
-- ✅ Docstrings and PEP8 compliant
+- ✅ Clean MVC architecture (Model-View-Controller).
+- ✅ **Robust Error Handling:** Validates directory existence, type, and permissions.
+- ✅ Enum-based state management for clear and predictable states.
+- ✅ Refactored code with low cognitive complexity.
+- ✅ Docstrings and PEP8 compliant.
 
 ## 🎯 Goal
 
@@ -107,33 +111,46 @@ python3 --version
 
 ### Usage
 
-**Windows:**
-```bash
-python main.py
-```
+Run the script from the command line. You can specify the movie directory and the interaction mode.
 
-**macOS/Linux:**
+**Basic Usage:**
 ```bash
+# On Windows
+python main.py
+
+# On macOS/Linux
 python3 main.py
 ```
+If you don't provide any arguments, the script will ask you which mode to use (Normal or Silent) and will search for movies in your home directory.
 
-### Configuration
+**Command-Line Arguments:**
 
-⚠️ **Important:** Before running, update the movie directory path in `controllers.py` (line 22):
-
-```python
-directory = r"\\arcadia\Multimedia\Films"  # Change this to your movies folder
-```
+| Argument | Short | Description | Default |
+|---|---|---|---|
+| `--directory` | `-d` | Path to the directory where your movies are stored. | Your home directory |
+| `--silent` | `-s` | Run in silent mode (no bot personality). | Interactive prompt |
+| `--version` | `-v` | Show the application's version and exit. | N/A |
 
 **Examples:**
-- Windows: `directory = r"C:\Users\YourName\Movies"`
-- macOS: `directory = "/Users/YourName/Movies"`
-- Linux: `directory = "/home/yourname/Movies"`
+
+*   Run in silent mode with a custom movie directory:
+    ```bash
+    python3 main.py --silent --directory "/path/to/your/movies"
+    ```
+*   Run with a custom directory and let the script ask for the mode:
+    ```bash
+    python3 main.py -d "C:\Users\YourName\Videos\Movies"
+    ```
+*   Check the version:
+    ```bash
+    python3 main.py --version
+    ```
 
 ## 📚 Resources
 
 ### 📘 Documentation
 
+- `argparse`: https://docs.python.org/3/library/argparse.html
 - `file list` : 
   - https://stackoverflow.com/questions/3207219/how-do-i-list-all-files-of-a-directory
   - https://builtin.com/data-science/python-list-files-in-directory
